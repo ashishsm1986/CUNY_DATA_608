@@ -1,8 +1,10 @@
 ---
 title: "R Notebook"
+author: "Ashish Kumar"
 output:
   html_document: default
   html_notebook: default
+  
 ---
 
 **Principles of Data Visualization and Introduction to ggplot2**
@@ -10,7 +12,6 @@ output:
 I have provided you with data about the 5,000 fastest growing companies in the US, as compiled by Inc. magazine. lets read this in:
 
 ```{r}
-
 inc <- read.csv("https://raw.githubusercontent.com/charleyferrari/CUNY_DATA_608/master/module1/Data/inc5000_data.csv", header= TRUE)
 
 ```
@@ -33,37 +34,123 @@ Think a bit on what these summaries mean. Use the space below to add some more r
 ```{r}
 
 # Insert your code here, create more chunks as necessary
-
+dim(inc)
 ```
+
+The Data has 5001 Rows (Including Labels) and 8 Columns
+
+```{r}
+suppressMessages(suppressWarnings(library(tidyverse)))
+suppressMessages(suppressWarnings(library(ggplot2)))
+suppressMessages(suppressWarnings(library("RColorBrewer")))
+```
+
+```{r}
+#Lets see the Standard Deviaition for Numberical fields Growth/Revenue and Employees
+
+print(paste("SD for Growth Rate ",sd(inc$Growth_Rate)))
+print(paste("SD for Revenue ",sd(inc$Revenue)))
+print(paste("SD for Employees",sd(inc$Employees, na.rm = TRUE))) # Some companies have missing employee counts
+```
+
+```{r}
+plot(inc$Rank, inc$Growth_Rate,col="blue")
+print(paste("Looks Like only Higher ranked Companies have good growth rates"))
+```
+
 
 ## Question 1
 
 Create a graph that shows the distribution of companies in the dataset by State (ie how many are in each state). There are a lot of States, so consider which axis you should use. This visualization is ultimately going to be consumed on a 'portrait' oriented screen (ie taller than wide), which should further guide your layout choices.
 
-```{r}
+```{r fig1, fig.height = 15, fig.width=15,warning=FALSE}
 
 # Answer Question 1 here
+# Create Summary of states dataframe and sort by companies
+states <- inc %>%
+  group_by(State) %>%
+  count() %>%
+  rename(count = n) %>%
+  arrange(desc(count))
+# plot 
+stplot <- ggplot(states, aes(x = reorder(State, count), y = count)) 
+stplot <- stplot + geom_bar(stat = "identity", fill = 'Brown') + coord_flip() 
+stplot <- stplot + ggtitle("Distribution of Companies by States")
+stplot <- stplot + labs(x = "State Name", y = "Number of Companies")
+stplot <- stplot + theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+stplot
 
+print("California is the state with most distribution of companies")
 ```
+
 
 ## Quesiton 2
 
 Lets dig in on the state with the 3rd most companies in the data set. Imagine you work for the state and are interested in how many people are employed by companies in different industries. Create a plot that shows the average and/or median employment by industry for companies in this state (only use cases with full data, use R's `complete.cases()` function.) In addition to this, your graph should show how variable the ranges are, and you should deal with outliers.
 
-```{r}
 
+```{r fig.width=8.5, fig.height=9,warning=FALSE}
 # Answer Question 2 here
-
+# find state with third most companies (3rd row b/c already ordered desc)
+third_state <- states[3,"State"]
+third_state
 ```
+```{r,warning=FALSE}
+# Get complete cases and 3rd ranked state only   
+third_state_data <- inc[complete.cases(inc),] %>%
+  inner_join(third_state, by = "State")
+# Mean employment by industry
+mean_emp <- aggregate(Employees ~ Industry, third_state_data, mean)
+# Maximum average employee no.
+maxmean <- max(mean_emp$Employees)
+# plot data
+emp_plot<- ggplot(third_state_data, aes(x = reorder(Industry,Employees,mean), y = Employees))
+emp_plot<- emp_plot+ geom_boxplot(outlier.shape = NA, show.legend=F) + coord_flip()
+emp_plot<- emp_plot+ labs(x = "industry", y = "employees", title="Mean Employment Size by Industry")
+emp_plot<- emp_plot+ geom_point(data = mean_emp, aes(x=Industry, y=Employees), color='darkblue', size = 2)
+emp_plot<- emp_plot+ theme(plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
+
+emp_plot<- emp_plot+  scale_y_continuous(limits = c(0,maxmean), breaks = seq(0, maxmean, 500))
+emp_plot
+```
+The average employee count in the Business Products & Services industry are many times greater than the other industries.
+
+For Such a big skew and outliers we can use log scale
+```{r,warning=FALSE}
+emp_plot <- emp_plot + scale_y_log10(limits = c(1, maxmean))
+emp_plot <- emp_plot + labs(caption = "(grid line spacing on log scale)")
+emp_plot <- emp_plot + theme(plot.caption = element_text(size = 8))
+emp_plot
+```
+
+
+
 
 ## Question 3
 
 Now imagine you work for an investor and want to see which industries generate the most revenue per employee. Create a chart that makes this information clear. Once again, the distribution per industry should be shown.
 
-```{r}
 
+```{r,warning=FALSE,message=FALSE}
 # Answer Question 3 here
 
+#filter out incomplete cases
+
+revenue_data <- inc[complete.cases(inc),] %>%
+  group_by(Industry) %>%
+  summarise(org_count = n(),Revenue = sum(Revenue),Employees= sum(Employees)) %>%
+  mutate(rev = Revenue / Employees ) 
+
+str(revenue_data)
+head(revenue_data)
+# Plot average revenue by industry
+reven_plt<- ggplot(revenue_data) +  geom_bar(aes(Industry, rev, fill = Industry), stat = "summary", fun.y = "mean", fill="darkgreen")
+reven_plt<- reven_plt+ coord_flip()
+reven_plt<- reven_plt+ theme(legend.position="none")
+reven_plt<- reven_plt+ theme(text = element_text(size=10), axis.title=element_text(size=15,face="bold")) 
+reven_plt<- reven_plt+ labs(title = "Avg. Revenue per Employees by Industry", x= "Industry", y= "Mean Revenue per Employee")
+reven_plt<- reven_plt+ theme(plot.title = element_text(size=15))
+reven_plt
+
+print("Computer Hardware seems to the industry with highest employee revenue on Average")
 ```
-
-
