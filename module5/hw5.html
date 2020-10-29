@@ -1,0 +1,107 @@
+<html>
+<body>
+
+<p><b>Hello This Work for Module5 in JavaScript. Both the Reverse function and Multiple Function are in the same HTML Page.</b></p>
+
+<!-- Function 1 -->
+<p><b>Function1:- Enter a word and Click the button to generate reverse.</b></p>
+
+<p>
+<form name= 'reverse' >
+    <input id="word" type="string" size="20">
+    <input type="button" style="background-color:black;color:white;width:150px;height:40px;" value="Generate Reverse" onClick="ans1();">
+</form>
+</p>
+
+<p id = "Q1"> </p>
+
+
+<!-- Function 2 -->
+
+<p><b>Function 2:- Enter a number and Click the button to generate first 20 Multiples.</b></p>
+
+<p>
+<form name= 'MultipleTable' >
+    <input id="num" type="number" size="20">
+    <input type="button" style="background-color:black;color:white;width:150px;height:40px;" value="Generate 20 Multiples" onClick="ans2();">
+</form>
+</p>
+
+<p id="Generate"></p>
+
+<script type="text/javascript">
+
+function reverser(string){
+    var output = '';
+    output = string.split('').reverse().join('');
+    return output
+};
+function ans1(){
+    var target = document.getElementById('Q1');
+    target.innerHTML = reverser(document.reverse.word.value);
+};
+
+
+<!--Question 2 creates an array of multiples-->
+function multiples(count){
+    myArray = [];
+    for (i = 1; i <= count; i++) {myArray.push(document.MultipleTable.num.value * (1 * i))};
+    return myArray
+}
+
+
+function MakeTable(inputArray){
+    var elements = inputArray.length;
+    var outHTML = '<table>';
+    for (i = 0; i < elements; i++){
+        if (i % 4 ==0){outHTML= outHTML +'<tr>'};
+        outHTML = outHTML + '<td>'+ inputArray[i]+ '</td>';
+        if (i % 4 ==4-1){outHTML = outHTML +'</tr>'};
+    };
+    outHTML = outHTML + '</table>';
+    return outHTML
+};
+
+function ans2(){
+  var target = document.getElementById("Generate");
+  target.innerHTML = MakeTable(multiples(20));
+};
+
+
+
+</script>
+
+<p><b>Function 3:- Display Presidents Data.</b></p>
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<!--<script src="d3.min.js"></script>-->
+<!-- <script src="https://d3js.org/d3.v3.min.js"></script> -->
+        
+
+<script type="text/javascript"charset="utf-8">
+    d3.text("/data/presidents.csv", function(data) {
+    var parsedCSV = d3.csv.parseRows(data);
+    var container = d3.select("body")
+    .append("table")
+    .selectAll("tr")
+    .data(parsedCSV).enter()
+    .append("tr")
+    .selectAll("td")
+    .data(function(d) { return d; }).enter()
+    .append("td")
+    .text(function(d) { return d; });
+    });
+</script>
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<p>
+<form name= 'pres' >
+    <input id="word" type="string" size="20">
+    <input type="button" style="background-color:black;color:white;width:150px;height:40px;" value="President" onClick="FindPresDetails();">
+</form>
+</p>
+
+<script>
+
+</script>
+
+</body>
+</html>
