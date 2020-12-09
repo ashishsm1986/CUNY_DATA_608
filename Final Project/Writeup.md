@@ -33,7 +33,8 @@ Geography, Confirmed Deaths, Confirmed Recoveries and Active cases.
 
 
 
-#### I Believe this analysis important as the COVID is currently world's most active problem to analyse.
+#### I Believe this analysis important as the COVID is currently world's most active problem to analyze.
+#### The Audience can be a curious student a policy maker of a respective state or general public who wants to know how differnt states are doing overtime to fight covid and perhaps state governments could coordinate and learn from each other to better prepare for the same or similar.
 #### By this analysis we can which U.S states are affected the most and where the most vaccines may be required when it becomes available for public.
 #### We realize about 200,000 people have lost their life in U.S alone and have had around 14 million cases of Covid infections overall through this year.
 #### We could also be able to see which states have been able to to bring down the spread of the virus and have been effective.
