@@ -15,19 +15,19 @@ Geography, Confirmed Deaths, Confirmed Recoveries and Active cases.
     - I created a file combine_data.csv file from all the data after cleansing. Because i wanted to avoid having to go through all the files one by one everyime i redeployed the dashboard.
 
 ## Visualizations i made are:-
-    - A US Map with the state numbers depicting the impact of COVID. This provides a hollistic view of how all the states across US are affected by COVID.
+- A US Map with the state numbers depicting the impact of COVID. This provides a hollistic view of how all the states across US are affected by COVID.
 
-    - A barplot of Deaths vs Confirmed cases with confirmed deaths per state. The user can choose which state to look into.
+- A barplot of Deaths vs Confirmed cases with confirmed deaths per state. The user can choose which state to look into.
 
-    - A barplot of People Hospitalized vs Confirmed cases per state. The user can choose which state to look into. This helps us understand how each state's healthcare facilities could be coping with increasing infections. Unfortunately there is not data reported beyond August in this regard as the state governments are not reporting these numbers anymore. https://github.com/CSSEGISandData/COVID-19/issues/3083
+- A barplot of People Hospitalized vs Confirmed cases per state. The user can choose which state to look into. This helps us understand how each state's healthcare facilities could be coping with increasing infections. Unfortunately there is not data reported beyond August in this regard as the state governments are not reporting these numbers anymore. https://github.com/CSSEGISandData/COVID-19/issues/3083
 
-    - A timeseries plot of Active cases vs confirmed cases  per state. The user can choose which state to look into. This helps us understand how quickly the cases are being resolved overall for each state.
+- A timeseries plot of Active cases vs confirmed cases  per state. The user can choose which state to look into. This helps us understand how quickly the cases are being resolved overall for each state.
 
-    - A barplot of Number of new cases per state. The user can choose which state to look into. This helps us guage how new cases are popping up in each state overtime from April to December.
+- A barplot of Number of new cases per state. The user can choose which state to look into. This helps us guage how new cases are popping up in each state overtime from April to December.
 
-    - I made distinct color for each quarter of the year to easily identify the differences across the qurters.
+- I made distinct color for each quarter of the year to easily identify the differences across the qurters.
 
-    - I added the filter on the states and thought it to be best so the user could see data for all the states.
+- I added the filter on the states and thought it to be best so the user could see data for all the states.
 
 
 
