@@ -14,7 +14,7 @@ Geography, Confirmed Deaths, Confirmed Recoveries and Active cases.
     - For this i used web scraping that i learnt in my earlier classes at CUNY.
     - I created a file combine_data.csv file from all the data after cleansing. Because i wanted to avoid having to go through all the files one by one everyime i redeployed the dashboard.
 
-- Visualizations i made are:-
+## Visualizations i made are:-
     - A US Map with the state numbers depicting the impact of COVID. This provides a hollistic view of how all the states across US are affected by COVID.
 
     - A barplot of Deaths vs Confirmed cases with confirmed deaths per state. The user can choose which state to look into.
