@@ -17,7 +17,7 @@ The csse_covid_19_daily_reports_us folder contains an aggregation of each USA St
 
 
 
-- First step would be clean up the data for nulls or missing information.
+First step would be clean up the data for nulls or missing information.
     - For this i used web scraping that i learnt in my earlier classes at CUNY.
     - I created a file combine_data.csv file from all the data after cleansing. Because i wanted to avoid having to go through all the files one by one everyime i redeployed the dashboard.
 
