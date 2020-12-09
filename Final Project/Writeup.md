@@ -31,10 +31,10 @@ Geography, Confirmed Deaths, Confirmed Recoveries and Active cases.
 
 
 
-### I Believe this analysis important as the COVID is currently world's most active problem to analyse.
-### By this analysis we can which U.S states are affected the most and where the most vaccines may be required when it becomes available for public.
-### We could also be able to see which states have been able to to bring down the spread of the virus and have been effective.
-### As we can see the most impacted states are Newyork, followed by Texas and California.
-### The best doing states are Vermont with overall 77 deaths.
+#### I Believe this analysis important as the COVID is currently world's most active problem to analyse.
+#### By this analysis we can which U.S states are affected the most and where the most vaccines may be required when it becomes available for public.
+#### We could also be able to see which states have been able to to bring down the spread of the virus and have been effective.
+#### As we can see the most impacted states are Newyork, followed by Texas and California.
+#### The best doing states are Vermont with overall 77 deaths.
 
 ## licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) by the Johns Hopkins University on behalf of its Center for Systems Science in Engineering. Copyright Johns Hopkins University 2020.
