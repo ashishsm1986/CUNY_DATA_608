@@ -10,7 +10,12 @@ The csse_covid_19_daily_reports_us folder contains an aggregation of each USA St
 
 ## Some data parameters are:-
 
-Geography, Confirmed Deaths, Confirmed Recoveries and Active cases.
+- Province_State - The name of the State within the USA.
+- Deaths - Aggregated death toll for the state.
+- Active - Aggregated confirmed cases that have not been resolved (Active cases = total cases - total recovered - total deaths).
+- People_Hospitalized - Total number of people hospitalized. (Nullified on Aug 31, see Issue #3083)
+
+
 
 - First step would be clean up the data for nulls or missing information.
     - For this i used web scraping that i learnt in my earlier classes at CUNY.
