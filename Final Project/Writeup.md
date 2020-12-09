@@ -1,5 +1,7 @@
 For the final project Have creates visualizations on US active cases and daily death reports on COVID-19.
 
+## Link to Dashboard:- https://ashishsm1986.shinyapps.io/data-608-US-COVID-Impact/
+
 ## The Data source is located here:- 
 https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_daily_reports_us
 
